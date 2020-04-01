@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.notesapp.R;
 import com.example.notesapp.models.Notes;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
@@ -52,18 +50,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
         TextView titleText;
         TextView contentText;
         TextView timeText;
+        TextView dateText;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleText = itemView.findViewById(R.id.text_title);
             contentText = itemView.findViewById(R.id.text_content);
-            timeText = itemView.findViewById(R.id.text_time);
+            timeText = itemView.findViewById(R.id.text_date);
+            dateText = itemView.findViewById(R.id.text_time);
         }
         public void bind(final int index, final Notes item) {
             titleText.setText(item.getTitle());
             contentText.setText(item.getContent());
-            Date dt = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy HH:mm a");
-            timeText.setText(sdf.format(dt));
+            timeText.setText(item.getWaktu());
+            dateText.setText(item.getDate());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

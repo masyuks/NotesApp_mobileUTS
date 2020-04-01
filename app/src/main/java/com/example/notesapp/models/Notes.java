@@ -6,18 +6,24 @@ import android.os.Parcelable;
 public class Notes implements Parcelable {
     private String title;
     private String content;
-
-    public Notes(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
+    private String waktu;
+    private String date;
 
     public Notes() {
+    }
+
+    public Notes(String title, String content, String waktu, String date) {
+        this.title = title;
+        this.content = content;
+        this.waktu = waktu;
+        this.date = date;
     }
 
     protected Notes(Parcel in) {
         title = in.readString();
         content = in.readString();
+        waktu = in.readString();
+        date = in.readString();
     }
 
     public static final Creator<Notes> CREATOR = new Creator<Notes>() {
@@ -48,6 +54,22 @@ public class Notes implements Parcelable {
         this.content = content;
     }
 
+    public String getWaktu() {
+        return waktu;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -57,5 +79,7 @@ public class Notes implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
         dest.writeString(content);
+        dest.writeString(waktu);
+        dest.writeString(date);
     }
 }
